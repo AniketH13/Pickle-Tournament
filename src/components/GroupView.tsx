@@ -6,6 +6,9 @@ import { computeGroupStandings } from '@/lib/scoring';
 interface Team {
   id: string;
   name: string;
+  player1?: string | null;
+  player2?: string | null;
+  group?: { name: string };
 }
 
 interface Match {
@@ -39,6 +42,7 @@ interface Group {
 interface Props {
   group: Group;
   onMatchClick: (match: Match) => void;
+  onEditTeam?: (team: Team) => void;
 }
 
 const SCORE_TYPE_SHORT: Record<string, string> = {
@@ -47,7 +51,7 @@ const SCORE_TYPE_SHORT: Record<string, string> = {
   TWENTY_ONE: '21pts',
 };
 
-export default function GroupView({ group, onMatchClick }: Props) {
+export default function GroupView({ group, onMatchClick, onEditTeam }: Props) {
   const standings = computeGroupStandings({
     teams: group.teams,
     matches: group.matches.map((m) => ({
@@ -89,7 +93,7 @@ export default function GroupView({ group, onMatchClick }: Props) {
         <p className="section-title" style={{ marginBottom: '0.75rem', fontSize: '0.9rem' }}>
           📊 Standings
         </p>
-        <StandingsTable standings={standings} />
+        <StandingsTable standings={standings} teams={group.teams} onEditTeam={onEditTeam} />
       </div>
 
       {/* Matches */}

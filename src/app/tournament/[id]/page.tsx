@@ -6,12 +6,15 @@ import Link from 'next/link';
 import GroupView from '@/components/GroupView';
 import KnockoutBracket from '@/components/KnockoutBracket';
 import MatchModal from '@/components/MatchModal';
+import EditTeamModal from '@/components/EditTeamModal';
 import { computeGroupStandings } from '@/lib/scoring';
 
 interface Team {
   id: string;
   name: string;
   groupId: string;
+  player1?: string | null;
+  player2?: string | null;
   group?: { name: string };
 }
 
@@ -89,6 +92,7 @@ export default function TournamentPage() {
   const [activeGroupIdx, setActiveGroupIdx] = useState(0);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
   const [selectedKnockoutMatch, setSelectedKnockoutMatch] = useState<KnockoutMatch | null>(null);
+  const [editingTeam, setEditingTeam] = useState<Team | null>(null);
   const [advancing, setAdvancing] = useState(false);
   const [advanceError, setAdvanceError] = useState('');
 
@@ -333,6 +337,13 @@ export default function TournamentPage() {
             <GroupView
               group={activeGroup}
               onMatchClick={(match) => setSelectedMatch(match as Match)}
+              onEditTeam={(team) =>
+                setEditingTeam({
+                  ...team,
+                  groupId: activeGroup.id,
+                  group: { name: activeGroup.name },
+                })
+              }
             />
           )}
         </div>
@@ -375,6 +386,18 @@ export default function TournamentPage() {
           isKnockout={true}
           onClose={() => setSelectedKnockoutMatch(null)}
           onSubmit={handleMatchSubmit}
+        />
+      )}
+
+      {/* Team Edit Modal */}
+      {editingTeam && (
+        <EditTeamModal
+          team={editingTeam}
+          matchType={tournament.matchType}
+          onClose={() => setEditingTeam(null)}
+          onSaved={async () => {
+            await fetchTournament();
+          }}
         />
       )}
     </main>

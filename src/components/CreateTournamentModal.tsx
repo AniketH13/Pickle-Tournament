@@ -82,14 +82,6 @@ export default function CreateTournamentModal({ onClose, onCreated }: Props) {
     setError('');
 
     if (!name.trim()) { setError('Tournament name is required'); return; }
-    for (let g = 0; g < numGroups; g++) {
-      for (let t = 0; t < teamsPerGroup; t++) {
-        if (!teams[g]?.[t]?.name.trim()) {
-          setError(`Group ${GROUP_LETTERS[g]}: Team ${t + 1} name is required`);
-          return;
-        }
-      }
-    }
 
     setSubmitting(true);
     try {
@@ -98,8 +90,8 @@ export default function CreateTournamentModal({ onClose, onCreated }: Props) {
         matchType,
         groups: Array.from({ length: numGroups }, (_, i) => ({
           name: GROUP_LETTERS[i],
-          teams: teams[i].map((t) => ({
-            name: t.name.trim(),
+          teams: teams[i].map((t, ti) => ({
+            name: t.name.trim() || `Open Slot ${ti + 1}`,
             player1: t.player1.trim() || undefined,
             player2: matchType === 'DOUBLES' ? (t.player2.trim() || undefined) : undefined,
           })),
@@ -228,7 +220,7 @@ export default function CreateTournamentModal({ onClose, onCreated }: Props) {
                   Teams & Players ({teamsPerGroup} teams per group)
                 </p>
                 <span style={{ fontSize: '0.72rem', color: 'var(--accent)' }}>
-                  💡 Player names are saved once and automatically pre-fill all matches!
+                  💡 Leave team empty for Open Slot (you can edit anytime during tournament)!
                 </span>
               </div>
 
@@ -266,7 +258,7 @@ export default function CreateTournamentModal({ onClose, onCreated }: Props) {
                             <input
                               id={`group-${gi}-team-${ti}`}
                               className="form-input"
-                              placeholder={`Team ${ti + 1} name *`}
+                              placeholder={`Team ${ti + 1} name (empty for Open Slot)`}
                               value={teams[gi]?.[ti]?.name ?? ''}
                               onChange={(e) => handleTeamField(gi, ti, 'name', e.target.value)}
                             />

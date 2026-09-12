@@ -490,6 +490,75 @@ export const db = {
     return created;
   },
 
+  // ── Teams ────────────────────────────────────────────────────────────────────
+
+  async getTeam(id: string) {
+    return await prisma.team.findUnique({
+      where: { id },
+      include: {
+        group: true,
+      },
+    });
+  },
+
+  async updateTeam(
+    id: string,
+    patch: { name?: string; player1?: string | null; player2?: string | null }
+  ) {
+    const updatedTeam = await prisma.team.update({
+      where: { id },
+      data: {
+        ...(patch.name !== undefined ? { name: patch.name.trim() } : {}),
+        ...(patch.player1 !== undefined ? { player1: patch.player1?.trim() || null } : {}),
+        ...(patch.player2 !== undefined ? { player2: patch.player2?.trim() || null } : {}),
+      },
+    });
+
+    // Synchronize player names across pending matches involving this team
+    if (patch.player1 !== undefined || patch.player2 !== undefined) {
+      const p1 = patch.player1?.trim() || null;
+      const p2 = patch.player2?.trim() || null;
+
+      // Group matches where team is team1
+      await prisma.match.updateMany({
+        where: { team1Id: id, status: 'PENDING' },
+        data: {
+          ...(patch.player1 !== undefined ? { team1Player1: p1 } : {}),
+          ...(patch.player2 !== undefined ? { team1Player2: p2 } : {}),
+        },
+      });
+
+      // Group matches where team is team2
+      await prisma.match.updateMany({
+        where: { team2Id: id, status: 'PENDING' },
+        data: {
+          ...(patch.player1 !== undefined ? { team2Player1: p1 } : {}),
+          ...(patch.player2 !== undefined ? { team2Player2: p2 } : {}),
+        },
+      });
+
+      // Knockout matches where team is team1
+      await prisma.knockoutMatch.updateMany({
+        where: { team1Id: id, status: 'PENDING' },
+        data: {
+          ...(patch.player1 !== undefined ? { team1Player1: p1 } : {}),
+          ...(patch.player2 !== undefined ? { team1Player2: p2 } : {}),
+        },
+      });
+
+      // Knockout matches where team is team2
+      await prisma.knockoutMatch.updateMany({
+        where: { team2Id: id, status: 'PENDING' },
+        data: {
+          ...(patch.player1 !== undefined ? { team2Player1: p1 } : {}),
+          ...(patch.player2 !== undefined ? { team2Player2: p2 } : {}),
+        },
+      });
+    }
+
+    return updatedTeam;
+  },
+
   // ── Tournament status ─────────────────────────────────────────────────────────
 
   async updateTournamentStatus(id: string, status: TournamentStatus) {
