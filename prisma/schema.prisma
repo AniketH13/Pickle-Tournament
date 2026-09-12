@@ -1,0 +1,94 @@
+// Prisma schema file for PostgreSQL (Supabase)
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Tournament {
+  id              String          @id @default(cuid())
+  name            String
+  status          String          @default("GROUP_STAGE") // SETUP | GROUP_STAGE | KNOCKOUT | COMPLETE
+  matchType       String          @default("DOUBLES")     // SINGLES | DOUBLES
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  groups          Group[]
+  knockoutMatches KnockoutMatch[]
+}
+
+model Group {
+  id           String     @id @default(cuid())
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  name         String
+  groupNumber  Int
+  teams        Team[]
+  matches      Match[]
+}
+
+model Team {
+  id                     String          @id @default(cuid())
+  groupId                String
+  group                  Group           @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  name                   String
+  player1                String?
+  player2                String?
+  matchesAsTeam1         Match[]         @relation("MatchTeam1")
+  matchesAsTeam2         Match[]         @relation("MatchTeam2")
+  wonMatches             Match[]         @relation("MatchWinner")
+  knockoutMatchesAsTeam1 KnockoutMatch[] @relation("KnockoutTeam1")
+  knockoutMatchesAsTeam2 KnockoutMatch[] @relation("KnockoutTeam2")
+  wonKnockoutMatches     KnockoutMatch[] @relation("KnockoutWinner")
+}
+
+model Match {
+  id           String    @id @default(cuid())
+  groupId      String
+  group        Group     @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  matchType    String    @default("SINGLES") // SINGLES | DOUBLES
+  scoreType    String    @default("ELEVEN")  // ELEVEN | FIFTEEN | TWENTY_ONE
+  status       String    @default("PENDING") // PENDING | COMPLETE
+  team1Id      String
+  team1        Team      @relation("MatchTeam1", fields: [team1Id], references: [id], onDelete: Cascade)
+  team2Id      String
+  team2        Team      @relation("MatchTeam2", fields: [team2Id], references: [id], onDelete: Cascade)
+  team1Player1 String?
+  team1Player2 String?
+  team2Player1 String?
+  team2Player2 String?
+  team1Score   Int?
+  team2Score   Int?
+  winnerId     String?
+  winner       Team?     @relation("MatchWinner", fields: [winnerId], references: [id], onDelete: SetNull)
+  matchNumber  Int
+  roundNumber  Int
+}
+
+model KnockoutMatch {
+  id           String     @id @default(cuid())
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  round        String     // QUARTERFINAL | SEMIFINAL | FINAL
+  position     Int
+  matchType    String     @default("SINGLES") // SINGLES | DOUBLES
+  scoreType    String     @default("ELEVEN")  // ELEVEN | FIFTEEN | TWENTY_ONE
+  status       String     @default("PENDING") // PENDING | COMPLETE
+  team1Id      String?
+  team1        Team?      @relation("KnockoutTeam1", fields: [team1Id], references: [id], onDelete: SetNull)
+  team2Id      String?
+  team2        Team?      @relation("KnockoutTeam2", fields: [team2Id], references: [id], onDelete: SetNull)
+  team1Player1 String?
+  team1Player2 String?
+  team2Player1 String?
+  team2Player2 String?
+  team1Score   Int?
+  team2Score   Int?
+  winnerId     String?
+  winner       Team?      @relation("KnockoutWinner", fields: [winnerId], references: [id], onDelete: SetNull)
+}

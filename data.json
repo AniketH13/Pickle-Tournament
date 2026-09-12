@@ -1,0 +1,286 @@
+{
+  "tournaments": [
+    {
+      "id": "xdzp5hemlmlmty3kr34",
+      "name": "Flood Relief",
+      "status": "GROUP_STAGE",
+      "createdAt": "2026-09-12T08:02:34.911Z",
+      "updatedAt": "2026-09-12T08:02:34.911Z"
+    }
+  ],
+  "groups": [
+    {
+      "id": "slgwzdjga3pmty3kr34",
+      "tournamentId": "xdzp5hemlmlmty3kr34",
+      "name": "A",
+      "groupNumber": 0
+    },
+    {
+      "id": "e4gls65sqhamty3kr35",
+      "tournamentId": "xdzp5hemlmlmty3kr34",
+      "name": "B",
+      "groupNumber": 1
+    }
+  ],
+  "teams": [
+    {
+      "id": "q2f4n1iszymty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "name": "Anish adhikari"
+    },
+    {
+      "id": "hpfl5zlpaasmty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "name": "Rahab Moktan"
+    },
+    {
+      "id": "9aj0p0cheawmty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "name": "Om Karmacharya"
+    },
+    {
+      "id": "dfxdufztb5bmty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "name": "Yajjyu Tuladhar"
+    },
+    {
+      "id": "6ddg8lnz6hfmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "name": "Rudraksha Joshi"
+    },
+    {
+      "id": "m1ylil7bunmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "name": "Manish Kumar Malla"
+    },
+    {
+      "id": "goezln1vah7mty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "name": "Siddhartha Lama"
+    },
+    {
+      "id": "y4zlgt7vtvmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "name": "Subarna Shah"
+    }
+  ],
+  "matches": [
+    {
+      "id": "sv3q1swuntmty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "COMPLETE",
+      "team1Id": "q2f4n1iszymty3kr34",
+      "team2Id": "hpfl5zlpaasmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": 11,
+      "team2Score": 13,
+      "winnerId": "hpfl5zlpaasmty3kr34",
+      "matchNumber": 1,
+      "roundNumber": 1
+    },
+    {
+      "id": "kwllp9rmxmmty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "COMPLETE",
+      "team1Id": "q2f4n1iszymty3kr34",
+      "team2Id": "9aj0p0cheawmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": 11,
+      "team2Score": 7,
+      "winnerId": "q2f4n1iszymty3kr34",
+      "matchNumber": 2,
+      "roundNumber": 2
+    },
+    {
+      "id": "o1nbbxsrvamty3kr34",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "q2f4n1iszymty3kr34",
+      "team2Id": "dfxdufztb5bmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 3,
+      "roundNumber": 3
+    },
+    {
+      "id": "wjhjkdhqnemty3kr35",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "hpfl5zlpaasmty3kr34",
+      "team2Id": "9aj0p0cheawmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 4,
+      "roundNumber": 4
+    },
+    {
+      "id": "knav2vbvemcmty3kr35",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "hpfl5zlpaasmty3kr34",
+      "team2Id": "dfxdufztb5bmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 5,
+      "roundNumber": 5
+    },
+    {
+      "id": "7ptkcnyqleemty3kr35",
+      "groupId": "slgwzdjga3pmty3kr34",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "9aj0p0cheawmty3kr34",
+      "team2Id": "dfxdufztb5bmty3kr34",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 6,
+      "roundNumber": 6
+    },
+    {
+      "id": "koaps1ywolkmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "6ddg8lnz6hfmty3kr35",
+      "team2Id": "m1ylil7bunmty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 1,
+      "roundNumber": 1
+    },
+    {
+      "id": "dz3bdwe6f4fmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "6ddg8lnz6hfmty3kr35",
+      "team2Id": "goezln1vah7mty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 2,
+      "roundNumber": 2
+    },
+    {
+      "id": "dknadrdhgnumty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "6ddg8lnz6hfmty3kr35",
+      "team2Id": "y4zlgt7vtvmty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 3,
+      "roundNumber": 3
+    },
+    {
+      "id": "rrildk9s3xdmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "m1ylil7bunmty3kr35",
+      "team2Id": "goezln1vah7mty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 4,
+      "roundNumber": 4
+    },
+    {
+      "id": "iy3ko69gyaomty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "m1ylil7bunmty3kr35",
+      "team2Id": "y4zlgt7vtvmty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 5,
+      "roundNumber": 5
+    },
+    {
+      "id": "rcg83mo20wmty3kr35",
+      "groupId": "e4gls65sqhamty3kr35",
+      "matchType": "SINGLES",
+      "scoreType": "ELEVEN",
+      "status": "PENDING",
+      "team1Id": "goezln1vah7mty3kr35",
+      "team2Id": "y4zlgt7vtvmty3kr35",
+      "team1Player1": null,
+      "team1Player2": null,
+      "team2Player1": null,
+      "team2Player2": null,
+      "team1Score": null,
+      "team2Score": null,
+      "winnerId": null,
+      "matchNumber": 6,
+      "roundNumber": 6
+    }
+  ],
+  "knockoutMatches": []
+}
